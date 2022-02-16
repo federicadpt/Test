@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_ui"
+    app:startDestination="@id/navList">
+
+    <fragment
+        android:id="@+id/navList"
+        android:name="it.univaq.citydiscover.fragments.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_navList_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/navMap"
+        android:name="it.univaq.citydiscover.fragments.MapsFragment"
+        android:label="MapsFragment"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_navMap_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="it.univaq.citydiscover.DetailActivity"
+        android:label="DetailActivity" />
+</navigation>
