@@ -29,6 +29,7 @@ import it.univaq.citydiscover.utility.RequestVolley;
 
 
 public class ListFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private List<City> data = new ArrayList<>();
     private Adapter adapter = new Adapter(data);
@@ -68,6 +69,9 @@ public class ListFragment extends Fragment {
                 "https://comuni-ita.herokuapp.com/api/comuni",
                 null,
                 new Response.Listener<JSONArray>() {
+
+                    //private DialogProgress dialog; // ###########
+
                     @Override
                     public void onResponse(JSONArray response) {
 
@@ -84,13 +88,23 @@ public class ListFragment extends Fragment {
 
                             new Thread(() -> {
                                 Database.getInstance(requireContext()).cityDao().save(data);
-                                Preferences.save(requireContext(), "firstStart", false);
+                                Preferences.save(requireContext(), "firstStart", false); // d'ora in poi entrerà sempre nel load
                             }).start();
 
                             requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
 
                         }).start();
                     }
+
+                    // #####################
+                    /*public void onRequestUpdate(int progress) {
+
+                        if(dialog == null) {
+                            dialog = new DialogProgress();
+                            dialog.show(getChildFragmentManager(), "dialog-progress");
+                        }
+                        dialog.updateProgress(progress);
+                    }*/
                 },
                 new Response.ErrorListener() {
                     @Override

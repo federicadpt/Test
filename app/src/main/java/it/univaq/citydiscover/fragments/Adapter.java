@@ -16,6 +16,7 @@ import it.univaq.citydiscover.R;
 import it.univaq.citydiscover.model.City;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
+
     private final List<City> data;
 
     public Adapter(List<City> data){
@@ -29,12 +30,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.onBind(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return data!=null ? data.size():0;
+        return data != null ? data.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -57,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
              //serve un bundle per passare i dati
              Bundle bundle = new Bundle();
              bundle.putSerializable("city",city);
-             Navigation.findNavController(view).navigate(R.id.action_navList_to_detailActivity,bundle);
+             Navigation.findNavController(view).navigate(R.id.action_navList_to_detailActivity, bundle);
         }
 
 
