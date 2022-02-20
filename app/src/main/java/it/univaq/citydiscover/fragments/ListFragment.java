@@ -2,11 +2,14 @@ package it.univaq.citydiscover.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import it.univaq.citydiscover.R;
 import it.univaq.citydiscover.database.Database;
@@ -32,6 +36,7 @@ public class ListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<City> data = new ArrayList<>();
+    private SearchView searchView;
     private Adapter adapter = new Adapter(data);
 
     @Nullable
@@ -46,12 +51,39 @@ public class ListFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
+        searchView = view.findViewById(R.id.search_view);
 
-        if(Preferences.load(requireContext(), "firstStart", true)){
+
+        if (Preferences.load(requireContext(), "firstStart", true)) {
             download();
         } else {
             load();
         }
+
+        searchView.setQueryHint("Search a city");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+
+            }
+        });
+    }
+    private void filter(String newText){
+        List<City> filteredCities=new ArrayList<>();
+        for(City item:data){
+            if(item.getName().toLowerCase().contains(newText.toLowerCase())){
+                    filteredCities.add(item);
+            }
+        }
+        adapter.filterList(filteredCities);
     }
 
 
@@ -61,6 +93,7 @@ public class ListFragment extends Fragment {
             recyclerView.post(() -> adapter.notifyDataSetChanged());
         }).start();
     }
+
 
     private void download(){
 

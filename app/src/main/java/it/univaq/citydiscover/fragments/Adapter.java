@@ -17,7 +17,7 @@ import it.univaq.citydiscover.model.City;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
-    private final List<City> data;
+    private  List<City> data;
 
     public Adapter(List<City> data){
         this.data=data;
@@ -38,6 +38,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     public int getItemCount() {
         return data != null ? data.size() : 0;
     }
+
+
+    public void filterList(List<City> filteredCities) {
+        data=filteredCities;
+        notifyDataSetChanged();
+
+    }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -68,6 +77,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             String extras= String.format("Codice provincia %s, CAP %s",city.getProvinceCode(),city.getCap());
             subtitle.setText(extras);
         }
+
 
 
     }
