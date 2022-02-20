@@ -80,7 +80,7 @@ public class ListFragment extends Fragment {
         List<City> filteredCities=new ArrayList<>();
         for(City item:data){
             if(item.getName().toLowerCase().contains(newText.toLowerCase())){
-                    filteredCities.add(item);
+                filteredCities.add(item);
             }
         }
         adapter.filterList(filteredCities);

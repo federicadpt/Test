@@ -75,6 +75,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
         if(fragment != null) fragment.getMapAsync(this);
     }
 
+    @Override
+    public void onStop(){
+        super.onStop();
+        locationHelper.stop(this);
+    }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -144,7 +149,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
 
             try {
                 requireActivity().runOnUiThread(() -> map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 10)));
-                // se non avessi alcuna città il build del bounds potrebbe andare in errore (non riesce a costruirlo senza neanche una farmacia)
+                // se non avessi alcuna città il build del bounds potrebbe andare in errore (non riesce a costruirlo senza neanche una città)
                 // gestisco con un'eccezione per sicurezza
             } catch (Exception e) {
                 e.printStackTrace();
