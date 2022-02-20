@@ -31,6 +31,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#7A3FB5"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="TextView" />
