@@ -103,7 +103,6 @@ public class ListFragment extends Fragment {
                 null,
                 new Response.Listener<JSONArray>() {
 
-                    //private DialogProgress dialog; // ###########
 
                     @Override
                     public void onResponse(JSONArray response) {
@@ -129,15 +128,6 @@ public class ListFragment extends Fragment {
                         }).start();
                     }
 
-                    // #####################
-                    /*public void onRequestUpdate(int progress) {
-
-                        if(dialog == null) {
-                            dialog = new DialogProgress();
-                            dialog.show(getChildFragmentManager(), "dialog-progress");
-                        }
-                        dialog.updateProgress(progress);
-                    }*/
                 },
                 new Response.ErrorListener() {
                     @Override
