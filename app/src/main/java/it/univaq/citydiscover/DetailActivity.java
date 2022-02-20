@@ -41,9 +41,9 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setupTextView(){
         ((TextView) findViewById(R.id.textTitle)).setText(city.getName().toUpperCase());
-        ((TextView) findViewById(R.id.textCode)).setText(String.valueOf("codice: "+ city.getCode()));
-        ((TextView) findViewById(R.id.textCadastralCode)).setText("codice catastale: "+ city.getCadastralCode());
-        ((TextView) findViewById(R.id.textPrefix)).setText("prefisso telefonico: "+ city.getPrefix());
+        ((TextView) findViewById(R.id.textCode)).setText(String.valueOf("Codice: "+ city.getCode()));
+        ((TextView) findViewById(R.id.textCadastralCode)).setText("Codice catastale: "+ city.getCadastralCode());
+        ((TextView) findViewById(R.id.textPrefix)).setText("Prefisso telefonico: "+ city.getPrefix());
     }
 
 

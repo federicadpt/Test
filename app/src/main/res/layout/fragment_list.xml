@@ -7,10 +7,13 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
-        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        tools:ignore="MissingConstraints">
+        android:layout_margin="8dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp">
+
+
     </androidx.appcompat.widget.SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
